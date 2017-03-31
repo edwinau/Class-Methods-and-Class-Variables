@@ -1,18 +1,16 @@
 class BankAccount
 
+  attr_accessor :balance, :deposit, :withdraw
+  @@accounts = []
+  @@interest_rate = 1.4
 
-
-  attr_accessor :balance
-
-
+  def self.abc(account)
+    @@accounts << account
+  end
 
   def initialize
     @balance = 0
-    @@interest_rate = 1.4
-    @@accounts = [] #eventually store all accounts
   end
-
-
 
   def deposit(num)
     num + @balance
@@ -22,20 +20,21 @@ class BankAccount
     @balance - num
   end
 
-  def self.create(x)
-    BankAccount.new = x + @@accounts
-    x
+  def self.create
+     @@accounts << BankAccount.new
+  end
 
   def self.total_funds
-    @@acounts [[x]]
-      account += @@accounts
+   @@accounts.each do |x|
+     x = 0
+     x += x.balance.to_i
+     return x
+   end
   end
 
-  def self.interest_time(x)
+  def self.interest_time
     @@accounts.each do |x|
-      x
-    @@interest_rate
+      x.balance.to_i * @@interest_rate
     end
   end
-end
 end

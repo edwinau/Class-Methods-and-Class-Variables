@@ -12,7 +12,7 @@ class Zombie
   @@max_strength = 8 #never changes
   @@default_strength = 3 #never changes
 
-  def initialize(d=0,h=0)
+  def initialize(d=rand(1..5),h=rand(1..8))
       @max_speed = d
       @max_strength = h
       if d > @@max_speed
@@ -26,12 +26,32 @@ class Zombie
   end
 
   def encounter
+    if outrun_zombie? == true
+      puts "You ran faster than zombie, survived!"
+    elsif survive_attack? == true
+      puts "You are stronger than zombie, you caught plague!"
+      @@horde << Zombie.new
+    else
+      puts "You died!"
+    end
   end
 
   def outrun_zombie?
+    how_fast = rand(1..@@max_speed)
+    if how_fast > @max_speed
+      return true
+    else
+      return false
+    end
   end
 
   def survive_attack?
+    how_strong = rand(1..@@max_strength)
+    if how_strong > @max_strength
+      return true
+    else
+      return false
+    end
   end
 
   def self.all
@@ -64,16 +84,4 @@ class Zombie
     @@plague_level += rand(0..2)
     puts "#{@@plague_level} is the plague level."
   end
-
 end
-
-
-# x = []
-# x.each do |d,h|
-#   if d.to_i > @@max_speed
-#     d.to_i = @@default_speed
-#       if h.to_i> @@max_strength
-#         h.to_i = @@default_strength
-#       return x
-#   elsif h.to_i > @@max_strength
-#     y-to_i = @@default_strength

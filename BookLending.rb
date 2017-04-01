@@ -43,6 +43,13 @@ class Book
   #   end
   # end
 
+  def self.renew(book)
+    if book.lent_out?
+      puts "renewing #{book}"
+      @@due_date[book] = Time.now + (3) #(60*60*24*5)
+    end
+  end
+
   def self.borrowed(book)
     if book.lent_out?
       return true
